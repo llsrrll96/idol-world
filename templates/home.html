@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+
+    <!-- jQuery 추가 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="wrapper__header">
+            <div class="contents__title">
+                <div class="title">Updated news</div>
+            </div>
+            <div class="divideLine"></div>
+            <div class="contents__body">
+                <ul>
+                    <li>싸이월드 웹 버전이 사라진게 아쉬워서 직접 만든 미니홈피입니다 🏠</li>
+                    <li>게임 탭에 들어가서 3가지 미니게임을 해보세요!</li>
+                    <li>게임 탭에 들어가서 3가지 미니게임을 해보세요!</li>
+                    <li>게임 탭에 들어가서 3가지 미니게임을 해보세요!</li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrapper__body">
+            <div class="contents__title">
+                <div class="miniroom_title">Mini Room</div>
+                <div class="subtitle">사랑하는 웨이의 생일을 축하합니다🎉</div>
+            </div>
+            <div class="divideLine"></div>
+            <div class="mini-room-image">
+                <img src="/static/images/hgf.jpg" alt="Mini Room" />
+            </div>
+            <div class="comments-section">
+                <div>
+                    <p class="comments-title">What Way's fan say  <span class="comments-subtitle">한마디로 표현해봐~ </span></p>
+                </div>
+                <div class="comments-body">
+                    <form id="commentForm">
+                        <div class="comment-input">
+                            <div class="comment-input">
+                                <input type="text" id="commentInput" placeholder="댓글을 입력하세요..." required />
+                            </div>
+                            <div class="nickname-password-input">
+                                <input type="text" id="nicknameInput" placeholder="닉네임" required />
+                                <input type="password" id="passwordInput" placeholder="비밀번호" required />
+                                <button type="submit" id="submitButton">확인</button>
+                            </div>
+                        </div>
+                    </form>
+                    <ul id="comments" class="comment-list">
+                        {% for comment in comments %}
+                            <li class="comment-item">
+                                <p>
+                                    {% if user_role != 'admin' %}
+                                        웨이 생탄일(24.12.28) 공개
+                                    {% else %}
+                                        {{ comment.content }}
+                                    {% endif %}
+                                    (<span class="comment-nickname">{{ comment.username }}</span>)
+                                </p>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    $(document).ready(function() {
+        $('#commentForm').on('submit', function(event) {
+            event.preventDefault(); // 기본 폼 제출 방지
+
+            const comment = $('#commentInput').val();
+            const nickname = $('#nicknameInput').val();
+            const password = $('#passwordInput').val();
+
+            if (password.length < 4) {
+                alert('비밀번호는 4자리 이상으로 해주세요.')
+                return; // 비밀번호가 유효하지 않으면 제출하지 않음
+            }
+
+            const body = {
+                comment: comment,
+                nickname: nickname,
+                password: password
+            }
+
+            const submitButton = $('#submitButton');
+            submitButton.prop('disabled', true)
+
+            // POST 요청을 위한 jQuery AJAX
+            $.ajax({
+                url: '/comment/submit-comment',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(body),
+                success: function(data) {
+                    console.log('success:', data);
+                    //  if 성공시
+                    if (data.status === "success") {
+                        const htmltext = '<li class="comment-item"><p>' + data.comment + ' (' + '<span class="comment-nickname">' + data.nickname + '</span>' + ')</p></li>';
+
+                        $('#comments').append(htmltext);
+                        $('#commentInput').val('');
+                        $('#nicknameInput').val('');
+                        $('#passwordInput').val('');
+                    }
+                    // 일정 시간 후 버튼 활성화
+                    setTimeout(function() {
+                        submitButton.prop('disabled', false); // 버튼 활성화
+                    }, 2000); // 2초 후에 활성화
+                },
+                error: function(error) {
+                    console.error('Error:', error);
+                    submitButton.prop('disabled', false);
+                }
+            });
+        });
+    });
+</script>
+
+</html>

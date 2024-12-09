@@ -1,0 +1,193 @@
+/* 기존 CSS */
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wrapper__header {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contents__title {
+    display: flex;
+    justify-content: space-between; /* 제목과 서브타이틀 간의 공간 분배 */
+    align-items: center; /* 세로 정렬 */
+    margin-bottom: 10px; /* 아래 여백 추가 */
+    width: 100%; /* 전체 너비 사용 */
+}
+
+.title {
+  color: #55b2e4;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.miniroom_title {
+  color: #55b2e4;
+  font-size: 13px;
+  font-weight: 700;
+  width: 100%
+}
+
+.subtitle {
+    font-size: 12px; /* 서브타이틀 크기 */
+    color: #55b2e4; /* 서브타이틀 색상 */
+    margin-left: 10px; /* 서브타이틀 왼쪽 여백 */
+    text-align: right; /* 텍스트 우측 정렬 */
+    width: 100%; /* 전체 너비 사용 */
+}
+
+.divideLine {
+  width: 100%;
+  border-top: 1px solid gray;
+}
+
+
+
+.contents__body {
+  height: 200px;
+  font-size: 12px;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.wrapper__body {
+  width: 100%;
+  height: auto;
+}
+
+.video {
+  width: 100%;
+  height: 240px;
+  margin-top: 15px;
+  background-image: url('../images/miniroom.jpg');
+}
+
+.mini-room-image {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.mini-room-image img {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+}
+
+.comments-section {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.comments-title {
+  font-weight: bold;
+  color: #55b2e4;
+  margin-bottom: 10px;
+  font-size: 14px; /* 제목 크기 조정 */
+  border-bottom: 2px solid #333; /* 제목 아래에 선 추가 */
+  padding-bottom: 5px; /* 선과 제목 사이 여백 */
+}
+
+.comments-subtitle {
+  color: #000000;
+}
+
+.comments-body {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.comment-input {
+    display: flex;
+    flex-direction: column; /* 상하 레이아웃 */
+    margin-bottom: 10px; /* 댓글 입력란과 닉네임 비밀번호 입력란 간의 간격 */
+}
+
+.comment-input input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-right: 5px;
+}
+
+.nickname-password-input {
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+}
+
+#nicknameInput, #passwordInput {
+    width: 48%;
+}
+
+.comment-input button {
+    padding: 5px 15px;
+    background-color: #55b2e4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px; /* 버튼과 필드 간의 간격 */
+}
+
+.comment-input button:hover {
+    background-color: #44a1d6; /* 버튼 호버 색상 */
+}
+
+
+.comment-list {
+  list-style-type: none; /* 기본 리스트 스타일 제거 */
+  padding: 0; /* 패딩 제거 */
+  margin-top: 10px; /* 댓글 리스트와 입력란 사이 간격 */
+  background-color: white; /* 흰 배경 */
+  border: 1px solid #ddd; /* 테두리 */
+  border-radius: 5px; /* 모서리 둥글게 */
+}
+
+.comment-item {
+  padding: 10px; /* 댓글 아이템 패딩 */
+  border-bottom: 1px solid #ddd; /* 아래 선 추가 */
+}
+
+.comment-item:last-child {
+  border-bottom: none; /* 마지막 댓글은 아래 선 제거 */
+}
+
+.comment-item p {
+  margin: 0; /* p 태그의 기본 마진 제거 */
+
+}
+
+.comment-item .date {
+  font-size: 10px;
+  color: gray;
+}
+
+.comment-nickname {
+    color: #55b2e4;
+}

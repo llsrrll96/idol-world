@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웨이님의 미니홈피 :: 사이좋은 사람들, 웨이월드</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+  </head>
+  <body>
+    <div class="login-container">
+        <h2>로그인</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <input type="text" id="nicknameInput" placeholder="아아디" required />
+            </div>
+            <div class="input-group">
+                <input type="password" id="passwordInput" placeholder="비밀번호" required />
+            </div>
+            <button type="submit" id="loginButton">로그인</button>
+        </form>
+    </div>
+  </body>
+</html>
